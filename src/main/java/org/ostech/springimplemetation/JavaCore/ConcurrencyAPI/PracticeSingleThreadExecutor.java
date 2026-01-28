@@ -1,4 +1,4 @@
-package org.ostech.springimplemetation.ConcurrencyAPI;
+package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
