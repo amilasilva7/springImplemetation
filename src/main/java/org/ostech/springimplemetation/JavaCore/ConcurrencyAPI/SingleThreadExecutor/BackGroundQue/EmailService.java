@@ -27,7 +27,7 @@ public class EmailService {
 
     public void sendActualEmail(String to, String message) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println(to + " | " + message + " | " + count.incrementAndGet());
+        System.out.println(to + " | " + message + " | " + Thread.currentThread().getName() + " | " + count.incrementAndGet());
     }
 
 }
