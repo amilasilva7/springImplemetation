@@ -1,4 +1,4 @@
-package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI;
+package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,7 +25,11 @@ public class PracticeSingleThreadExecutor {
             executorService.execute(task1);
         } finally {
             if (executorService != null) {
+                //stop yet to start Threads
                 executorService.shutdown();
+
+                //forceShutThreads
+                //List<Runnable> stoppedThreads = executorService.shutdownNow();
             }
         }
 
