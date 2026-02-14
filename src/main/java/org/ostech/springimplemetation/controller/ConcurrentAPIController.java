@@ -1,6 +1,7 @@
 package org.ostech.springimplemetation.controller;
 
 import org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor.BackGroundQue.EmailService;
+import org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor.SequentialProcessingGuarantee.OrderProcessor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,14 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConcurrentAPIController {
 
     EmailService emailService;
+    OrderProcessor orderProcessor;
 
-    ConcurrentAPIController(EmailService emailService) {
+    ConcurrentAPIController(EmailService emailService, OrderProcessor orderProcessor) {
         this.emailService = emailService;
+        this.orderProcessor = orderProcessor;
     }
 
     @PostMapping("/send-email")
     public String sendEmail(String[] args) throws InterruptedException {//newSingleThreadExecutor
         emailService.sendEmail("test@email.com", "Message");
+        return "Success";
+    }
+
+    @PostMapping("/create-order")
+    public String createOrder(String[] args) {//newSingleThreadExecutor
+        orderProcessor.processOrder("Bunch of items");
         return "Success";
     }
 }
