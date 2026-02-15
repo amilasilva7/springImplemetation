@@ -29,4 +29,16 @@ public class ConcurrentAPIController {
         orderProcessor.processOrder("Bunch of items");
         return "Success";
     }
+
+    @PostMapping("/independent-parallel-pattern")
+    public String independentParallelPattern(String[] args) {//newSingleThreadExecutor
+        emailService.sendNotifications();
+        return "Success";
+    }
+
+    @PostMapping("/sequential-dependent-pattern")
+    public String SequentialDependent(String[] args) {//newSingleThreadExecutor
+        emailService.sendEmailSequentialDependent();
+        return "Success";
+    }
 }
