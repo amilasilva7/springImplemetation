@@ -1,4 +1,4 @@
-package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor.SequentialProcessingGuarantee;
+package org.ostech.springimplemetation.service.JavaCore.ConcurrencyAPI.ConcurrencyPatterns.ConsumerProducerPattern;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

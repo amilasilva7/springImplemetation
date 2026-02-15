@@ -1,4 +1,4 @@
-package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor.BackGroundQue;
+package org.ostech.springimplemetation.service.JavaCore.ConcurrencyAPI.ConcurrencyPatterns.BackGroundQueuePattern;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 @Configuration
-public class EmailExecutorQueue {
+public class EmailExecutorQueuePattern {
 
     @Bean(name = "emailExecutor", destroyMethod = "shutdown")
     public ExecutorService getEmailExecutorQueue() {

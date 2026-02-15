@@ -1,4 +1,4 @@
-package org.ostech.springimplemetation.JavaCore.ConcurrencyAPI.SingleThreadExecutor.BackGroundQue;
+package org.ostech.springimplemetation.service.JavaCore.ConcurrencyAPI.ConcurrencyPatterns.SequentialDependentPattern;
 
 import org.springframework.stereotype.Service;
 
@@ -6,48 +6,20 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class EmailService {
+public class SequentialDependentPattern {
 
     public final static AtomicInteger count = new AtomicInteger();
 
-    private final EmailExecutorQueue emailExecutorQueue;
 
-    EmailService(EmailExecutorQueue emailExecutorQueue) {
-        this.emailExecutorQueue = emailExecutorQueue;
-    }
-
-    public void sendEmail(String to, String message) {
-        emailExecutorQueue.getEmailExecutorQueue().execute(() -> {
-            try {
-                sendActualEmail(to, message);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
 
     public void sendActualEmail(String to, String message) throws InterruptedException {
         Thread.sleep(200);
         System.out.println(to + " | " + message + " | " + Thread.currentThread().getName() + " | " + count.incrementAndGet());
     }
 
-    public void sendNotifications() {
-        CompletableFuture<Void> emailFuture = CompletableFuture.runAsync(() -> sendEmail("email", "message"));
 
-        CompletableFuture<Void> appNotificationFuture = CompletableFuture.runAsync(() -> sendAppNotificationFuture(1, "short message"));
 
-        CompletableFuture<Void> smsFuture = CompletableFuture.runAsync(() -> sendSms(1, "short message"));
 
-        CompletableFuture.allOf(emailFuture, appNotificationFuture, smsFuture).join();
-    }
-
-    private void sendAppNotificationFuture(int i, String shortMessage) {
-        System.out.println("sendAppNotificationFuture " + shortMessage + Thread.currentThread().getName());
-    }
-
-    private void sendSms(int i, String shortMessage) {
-        System.out.println("sendSms " + shortMessage + Thread.currentThread().getName());
-    }
 
     public CompletableFuture<Boolean> sendEmailSequentialDependent() {
         System.out.println("Start sendEmail Sequential Dependent");
